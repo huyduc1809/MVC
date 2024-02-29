@@ -1,0 +1,632 @@
+﻿@{
+    ViewBag.Title = "Cửa hàng thú cưng - KP PET'S HOME";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- Owl carousel init -->
+<script language="javascript" src="~/Scripts/owlcarousel.js">
+</script>
+
+<div id="PageContainer" class="is-moved-by-drawer">
+    <main class="main-content" role="main">
+        <div id="PageContainer" class="is-moved-by-drawer">
+            <main class="main-content" role="main">
+
+                <style>
+                    body,
+                    html {
+                        height: 100%;
+                    }
+                </style>
+                <section id="home-featured-products">
+                    <div class="wrapper">
+                        <div class="inner">
+                            <h2 class="section-title text-center">
+                                Chương trình khuyến mãi
+                            </h2>
+                            <div class="home-collection-countdown text-center">
+                                <div class="countdown-days">
+                                    <div id="days">
+                                        00
+                                    </div>
+                                    <div>
+                                        Ngày
+                                    </div>
+                                </div>
+                                <div class="countdown-hrs">
+                                    <div id="hrs">
+                                        00
+                                    </div>
+                                    <div>
+                                        Giờ
+                                    </div>
+                                </div>
+                                <div class="countdown-mins">
+                                    <div id="mins">
+                                        00
+                                    </div>
+                                    <div>
+                                        Phút
+                                    </div>
+                                </div>
+                                <div class="countdown-secs">
+                                    <div id="secs">
+                                        00
+                                    </div>
+                                    <div>
+                                        Giây
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <section id="home-banners">
+                    <div class="wrapper">
+                        <div class="inner">
+                            <div class="grid">
+
+                                <div class="grid__item large--one-quarter medium--one-quarter small--one-half">
+                                    <div class="hb-img">
+                                        <a href="@Url.Action("sanpham","User")">
+                                            <img src="~/img/dog.png" alt="Sản phẩm cho chó" />
+                                            Sản phẩm cho chó
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="grid__item large--one-quarter medium--one-quarter small--one-half">
+                                    <div class="hb-img">
+                                        <a href="@Url.Action("sanpham","User")">
+                                            <img src="~/img/dogandcat.png" alt="Quần áo cho chó & mèo" />
+                                            Quần áo cho chó & mèo
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="grid__item large--one-quarter medium--one-quarter small--one-half float-right">
+                                    <div class="hb-img">
+                                        <a href="@Url.Action("sanpham","User")">
+                                            <img src="~/img/cat.png" alt="Sản phẩm cho mèo" />
+                                            Sản phẩm cho mèo
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="grid__item large--one-quarter medium--one-quarter small--one-half float-right">
+                                    <div class="hb-img">
+                                        <a href="@Url.Action("sanpham","User")">
+                                            <img src="~/img/dogandcat1.png" alt="Sức khỏe thú cưng" />
+                                            Sức khỏe thú cưng
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <section id="home-collections">
+                    <div class="wrapper">
+                        <div class="inner">
+                            <h2 class="section-title text-center">
+                                Sản phẩm nổi bật
+                            </h2>
+                            <div class="hc-tabs-wrapper">
+                                <div class="collection-body">
+                                    <div class="grid-uniform product-list">
+
+                                        @foreach (var i in Model)
+                                        {
+                                            <div class="grid__item large--one-third medium--one-third small--one-half">
+                                                <div class="product-item">
+                                                    <div class="product-normal">
+                                                        <div class="product-img">
+                                                            <a href="@Url.Action("Chitiet","User",new { id = i.MASP })">
+                                                                <img src="@Url.Content("~/img/"+@i.HINHANH)" style="height:100%" />
+                                                            </a>
+                                                            <div class="product-tags">
+                                                            </div>
+                                                            <div class="product-actions text-center clearfix">
+                                                                <div>
+
+                                                                    @if (i.SOLUONG != 0)
+                                                                    {<button type="button" class="btnBuyNow buy-now medium--hide small--hide" onclick="window.location.href='@Url.Action("ThemGiohang", "GioHang", new { @iMASP = i.MASP, @strURL = Request.Url.ToString() })'"><span>THÊM GIỎ HÀNG</span></button>}
+                                                                    @if (i.SOLUONG == 0)
+                                                                    {<button type="button" class="btnBuyNow buy-now medium--hide small--hide" onclick="window.location.href=" #"><span>TẠM HẾT HÀNG</span></button>}
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!--thanh nhỏ ở dưỡi-->
+                                                        <div class="product-variants-info">
+                                                            <div class="product-variants-count">
+
+                                                                <div class="list-variants-img medium--hide small--hide">
+                                                                    <div class="inner">
+                                                                        <ul class="no-bullets clearfix text-center">
+                                                                            @* @Html.Action("listhinhanhnhoduoi", new { id = i.MASP })*@
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="product-title">
+                                                            <a href="@Url.Action("Chitiet","User",new { id = i.MASP })">@i.TENSP</a>
+                                                        </div>
+
+                                                        <div class="product-price clearfix">
+                                                            <span class="current-price">@String.Format("{0:0,0}", @i.DONGIABAN)₫</span>
+
+                                                            @*<span class="original-price"><s>580,000₫</s></span>*@ <!--Gia goc-->
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section id="home-gallery">
+                    <div class="wrapper">
+                        <div class="inner">
+                            <h2 class="section-title text-center">
+                                CỬA HÀNG THÚ CƯNG KP PET'S HOME
+                            </h2>
+                            <div class="grid">
+                                <div class="grid__item large--one-half medium--one-half small--one-whole">
+                                    <div class="grid">
+
+
+
+
+                                        <div class="grid__item large--one-third medium--one-third small--one-half">
+                                            <div class="hg-item">
+                                                <a href="~/img/product-image/thucanchocho.jpg" data-fancybox="home-gallery-images" data-caption="Index Gallery Image 1">
+                                                    <img src="~/img/product-image/thucanchocho.jpg" alt="Index Gallery Image 1" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="grid__item large--one-third medium--one-third small--one-half">
+                                            <div class="hg-item">
+                                                <a href="~/img/product-image/thucanchomeo.jpg" data-fancybox="home-gallery-images" data-caption="Index Gallery Image 2">
+                                                    <img src="~/img/product-image/thucanchomeo.jpg" alt="Index Gallery Image 2" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="grid__item large--one-third medium--one-third small--one-half">
+                                            <div class="hg-item">
+                                                <a href="~/img/product-image/vandesuckhoe.jpg" data-fancybox="home-gallery-images" data-caption="Index Gallery Image 3">
+                                                    <img src="~/img/product-image/vandesuckhoe.jpg" alt="Index Gallery Image 3" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="grid__item large--one-third medium--one-third small--one-half">
+                                            <div class="hg-item">
+                                                <a href="~/img/product-image/kienthucchamsoc.jpg" data-fancybox="home-gallery-images" data-caption="Index Gallery Image 4">
+                                                    <img src="~/img/product-image/kienthucchamsoc.jpg" alt="Index Gallery Image 4" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="grid__item large--one-third medium--one-third small--one-half">
+                                            <div class="hg-item">
+                                                <a href="~/img/product-image/pet.jpg" data-fancybox="home-gallery-images" data-caption="Index Gallery Image 5">
+                                                    <img src="~/img/product-image/pet.jpg" alt="Index Gallery Image 5" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="grid__item large--one-third medium--one-third small--one-half">
+                                            <div class="hg-item">
+                                                <a href="~/img/product-image/giaohang.jpg" data-fancybox="home-gallery-images" data-caption="Index Gallery Image 6">
+                                                    <img src="~/img/product-image/giaohang.jpg" alt="Index Gallery Image 6" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="grid__item large--one-half medium--one-half small--one-whole">
+                                    <div class="hg-item">
+                                        <img src="~/img/product-image/petshop.jpg?v=110" alt="KP PET'S HOME - CỬA HÀNG THÚ CƯNG" height="362" />
+                                        <div class="hg-item-overlay"></div>
+                                        <div class="hg-item-title text-center">
+                                            KP PET'S HOME - CỬA HÀNG THÚ CƯNG
+                                        </div>
+                                        @*<a href="javascript:void(0)" id="hgModalYoutubeBtn" class="openYoutube">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                            </a>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section id="home-articles">
+                    <div class="wrapper">
+                        <div class="inner">
+                            <h2 class="section-title text-center">
+                                Tin tức nổi bật
+                            </h2>
+                            <div class="grid">
+
+                                <div id="owl-home-articles-slider" class="owl-carousel owl-theme">
+                                    <div class="item grid__item">
+                                        <div class="article-item">
+                                            <div class="article-img">
+                                                <a href="https://www.youtube.com/embed/w3Wluvzoggg">
+
+                                                    <div class="blog-post-audio">
+                                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/w3Wluvzoggg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    </div>
+                                                    @*<img src="../file.hstatic.net/1000359177/article/image1_20190102104221_large.png" alt="Những cách buộc dây giày đẹp ai nhìn cũng thích mê" />*@
+                                                </a>
+                                            </div>
+                                            <div class="article-title">
+                                                <a href="https://www.youtube.com/embed/w3Wluvzoggg">Tom & Jerry - Hoạt hình giải trí</a>
+                                            </div>
+                                            <div class="article-info">
+                                                <div class="article-date">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i> 07/07/22
+                                                </div>
+                                                <div class="article-author">
+                                                    <i class="fa fa-user" aria-hidden="true"></i> Huyền Trang
+                                                </div>
+                                                <div class="article-comment">
+                                                    <i class="fa fa-commenting" aria-hidden="true"></i> <span class="fb-comments-count"></span>
+                                                </div>
+                                            </div>
+                                            <div class="article-desc">
+                                                @* Ghi nội dung *@
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="item grid__item">
+                                        <div class="article-item">
+                                            <div class="article-img">
+                                                <a href="https://www.youtube.com/embed/_nLUJu4ev_c">
+                                                    <div class="blog-post-audio">
+                                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/_nLUJu4ev_c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="article-title">
+                                                <a href="https://www.youtube.com/embed/_nLUJu4ev_c">Top 7 Giống Mèo ĐÁNG YÊU Nhất Thế Giới</a>
+                                            </div>
+                                            <div class="article-info">
+                                                <div class="article-date">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i> 02/07/22
+                                                </div>
+                                                <div class="article-author">
+                                                    <i class="fa fa-user" aria-hidden="true"></i> Gia Thanh
+                                                </div>
+                                                <div class="article-comment">
+                                                    <i class="fa fa-commenting" aria-hidden="true"></i> <span class="fb-comments-count"></span>
+                                                </div>
+                                            </div>
+                                            <div class="article-desc">
+                                                @* Ghi nội dung *@
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="item grid__item">
+                                        <div class="article-item">
+                                            <div class="article-img">
+                                                <a href="https://www.youtube.com/embed/g9-ab69fovw">
+
+                                                    <div class="blog-post-audio">
+                                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/g9-ab69fovw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    </div>
+                                                    @*<img src="../file.hstatic.net/1000359177/article/image1_20190102104221_large.png" alt="Những cách buộc dây giày đẹp ai nhìn cũng thích mê" />*@
+                                                </a>
+                                            </div>
+                                            <div class="article-title">
+                                                <a href="https://www.youtube.com/embed/g9-ab69fovw">Khoảnh khắc đáng yêu của thú cưng</a>
+                                            </div>
+                                            <div class="article-info">
+                                                <div class="article-date">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i> 03/07/22
+                                                </div>
+                                                <div class="article-author">
+                                                    <i class="fa fa-user" aria-hidden="true"></i> Tấn Tài
+                                                </div>
+                                                <div class="article-comment">
+                                                    <i class="fa fa-commenting" aria-hidden="true"></i> <span class="fb-comments-count"></span>
+                                                </div>
+                                            </div>
+                                            <div class="article-desc">
+                                                @* Ghi nội dung *@
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="item grid__item">
+                                        <div class="article-item">
+                                            <div class="article-img">
+                                                <a href="https://www.youtube.com/embed/38AFNvoXP-U">
+
+                                                    <div class="blog-post-audio">
+                                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/38AFNvoXP-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    </div>
+                                                    @*<img src="../file.hstatic.net/1000359177/article/image1_20190102104221_large.png" alt="Những cách buộc dây giày đẹp ai nhìn cũng thích mê" />*@
+                                                </a>
+                                            </div>
+                                            <div class="article-title">
+                                                <a href="https://www.youtube.com/embed/38AFNvoXP-U">Nhạc thư giãn cho thú cưng</a>
+                                            </div>
+                                            <div class="article-info">
+                                                <div class="article-date">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i> 07/07/22
+                                                </div>
+                                                <div class="article-author">
+                                                    <i class="fa fa-user" aria-hidden="true"></i> Hải Nam
+                                                </div>
+                                                <div class="article-comment">
+                                                    <i class="fa fa-commenting" aria-hidden="true"></i> <span class="fb-comments-count"></span>
+                                                </div>
+                                            </div>
+                                            <div class="article-desc">
+                                                @* Ghi nội dung *@
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="item grid__item">
+                                        <div class="article-item">
+                                            <div class="article-img">
+                                                <a href="https://www.youtube.com/embed/t0Q2otsqC4I">
+
+                                                    <div class="blog-post-audio">
+                                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/t0Q2otsqC4I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    </div>
+                                                    @*<img src="../file.hstatic.net/1000359177/article/image1_20190102104221_large.png" alt="Những cách buộc dây giày đẹp ai nhìn cũng thích mê" />*@
+                                                </a>
+                                            </div>
+                                            <div class="article-title">
+                                                <a href="https://www.youtube.com/embed/t0Q2otsqC4I">Tom & Jerry - Hoạt hình giải trí</a>
+                                            </div>
+                                            <div class="article-info">
+                                                <div class="article-date">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i> 07/07/22
+                                                </div>
+                                                <div class="article-author">
+                                                    <i class="fa fa-user" aria-hidden="true"></i> Huyền Trang
+                                                </div>
+                                                <div class="article-comment">
+                                                    <i class="fa fa-commenting" aria-hidden="true"></i> <span class="fb-comments-count"></span>
+                                                </div>
+                                            </div>
+                                            <div class="article-desc">
+                                                @* Ghi nội dung *@
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+            </main>
+        </div>
+
+
+        <link href="~/Content/sanpham.css" rel="stylesheet" />
+
+
+
+
+        <div id="modalAddComplete">
+        </div>
+
+        <button type="button" id="modalAddCompleteBtn" style="display: none;"></button>
+
+        <script>
+            // Get the modal
+            var modalAddComplete = document.getElementById('modalAddComplete');
+
+            // Get the button that opens the modal
+            var modalAddCompleteBtn = document.getElementById("modalAddCompleteBtn");
+
+            // When the user clicks the button, open the modal
+            modalAddCompleteBtn.onclick = function () {
+                modalAddComplete.style.display = "block";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modalAddComplete) {
+                    modalAddComplete.style.display = "none";
+                }
+            }
+
+        </script>
+        <script language="javascript" src="~/Scripts/ajax-cart5eef.js"></script>
+
+        <script language="javascript" src="~/Scripts/api.jquery.js"></script>
+
+        <script language="javascript" src="~/Scripts/option_selection.js"></script>
+
+        <script language="javascript" src="~/Scripts/fastclick.min5eef.js"></script>
+        <script src="//theme.hstatic.net/1000359177/1000456422/14/script.js?v=110" type="text/javascript"></script>
+        <script language="javascript" src="~/Scripts/script5eef.js"></script>
+        <script language="javascript" src="~/Scripts/timber5eef.js"></script>
+
+
+        <link rel="stylesheet" href="~/Content/jquery.fancybox.min.css" />
+        <script language="javascript" src="~/Scripts/jquery.fancybox.min.js"></script>
+
+        <script language="javascript" src="~/Scripts/handlebars.min5eef.js"></script>
+
+
+
+
+        <!-- Custom script -->
+        <script>
+            if ($(window).width() > 768) {
+                setTimeout(function () {
+                    $("#ProductThumbs .thumbnail-item:first-child a").trigger('click');
+                }, 10);
+            };
+        </script>
+
+
+        <script>
+            $(document).ready(function () {
+                $().fancybox({
+                    thumbs: true,
+                    hash: false,
+                    loop: true,
+                });
+            });
+        </script>
+
+
+
+
+
+        <script>
+            // Set the date we're counting down to
+            var countDownDate = new Date("July 10, 2022 23:59:59").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+
+                // Get todays date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now an the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("days").innerHTML = days;
+
+                document.getElementById("hrs").innerHTML = hours;
+
+                document.getElementById("mins").innerHTML = minutes;
+
+                document.getElementById("secs").innerHTML = seconds;
+
+                // If the count down is finished, write some text
+                //if (distance < 0) {
+                //      clearInterval(x);
+                //    document.getElementById("flash-sale-status").innerHTML = "Flash Sale đã kết thúc";
+                //}
+            }, 1000);
+        </script>
+
+
+
+        <script language="javascript" src="~/Scripts/hoverchangeimage.js"></script>
+
+        <script>
+            $(".hc-search-wrapper > a").click(function () {
+                $(".search-bar-header").toggle();
+            });
+        </script>
+
+
+
+
+        <script>
+            $(".mobile-btnSearch > a").click(function () {
+                $(".mobile-search-wrapper").toggle();
+            });
+        </script>
+
+
+
+
+        <!-- Back to top -->
+        <script language="javascript" src="~/Scripts/backtotop.js"></script>
+
+        <!-- Validate quantity form & trigger zoom -->
+        <script language="javascript" src="~/Scripts/triggerzoom.js"></script>
+
+
+
+
+
+        <!-- popup loaded -->
+        <script>
+            $(document).ready(function () {
+                var date = new Date();
+                var minutes = 60;
+                date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+                if (getCookie('popupNewLetterStatus') != 'closed') {
+                    $('#popup-btn').trigger('click');
+                    setCookie('popupNewLetterStatus', 'closed', date);
+                };
+            })
+        </script>
+
+        <!-- quick view -->
+        <link href="~/Content/QuickView.css" rel="stylesheet" />
+
+
+    </main>
+</div>
+
+
+
+
+

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Thống kê - KP PET'S HOME";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 style="padding-top:20px; padding-left:20px; color:darkslategrey">THỐNG KÊ</h1>
+
+<table class="table">
+    <tr>
+        <td>
+            <h2 style="text-align:center"><img src="~/img/icons/cash_50px.png" />TỔNG DOANH THU</h2>
+            @{Decimal TongDoanhThu = decimal.Parse(ViewBag.TongDoanhThu.ToString()); }
+            <h3 style="text-align:center">@TongDoanhThu.ToString("#,##") VNĐ</h3>
+        </td>
+    </tr>
+    <tr style="text-align:center">
+        <td>
+            <h2 style="text-align:center"><img src="~/img/icons/ico_DonHang.png" />TỔNG ĐƠN HÀNG ĐẶT</h2>
+            <h3 style="text-align:center">@ViewBag.TongDonHang</h3>
+        </td>
+    </tr>
+    <tr style="text-align:center">
+        <td>
+            <h2 style="text-align:center"><img src="~/img/icons/food_truck_50px.png" />TỔNG SẢN PHẨM</h2>
+            <h3 style="text-align:center">@ViewBag.TongSanPham</h3>
+        </td>
+    </tr>
+    <tr style="text-align:center">
+        <td>
+            
+            <h2 style="text-align:center"><img src="~/img/logo/admin2.png" /> QUẢN TRỊ VIÊN</h2>
+            <h3 style="text-align:center">@ViewBag.TongAdmin</h3>
+        </td>
+    </tr>
+    <tr style="text-align:center">
+        <td>
+            <h2 style="text-align:center"><img src="~/img/icons/ico_KhachHang.png" />TỔNG TÀI KHOẢN KHÁCH HÀNG</h2>
+            <h3 style="text-align:center">@ViewBag.TongKhachHang</h3>
+        </td>
+    </tr>
+</table>

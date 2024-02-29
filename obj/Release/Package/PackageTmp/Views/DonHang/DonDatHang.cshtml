@@ -1,0 +1,84 @@
+﻿@model IEnumerable<WebsiteThuCungBento.Models.DONDATHANG>
+
+
+@{
+    ViewBag.Title = "Đơn đặt hàng - KP PET'S HOME";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="padding-top:10px">ĐƠN ĐẶT HÀNG</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Phương Thức Thanh Toán")
+        </th>
+        <th>
+            @Html.DisplayName("Tình Trạng Giao Hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày Đặt")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày Giao")
+        </th>
+        <th>
+            @Html.DisplayName("Mã Khách Hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Tên Khách Hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Tổng tiền")
+        </th>
+        <th>
+            @Html.DisplayName("Chi tiết đơn hàng")
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DATHANHTOAN)*@
+                @if (item.DATHANHTOAN == true)
+                {
+                    <label>Ship COD thanh toán khi nhận hàng</label>
+                }
+                else
+                {
+                    <label>Chuyển khoản</label>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TINHTRANGDH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYDAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYGIAO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MAKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KHACHHANG.HOTENKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TONGTIEN)
+            </td>
+            <td>
+                <a href="@Url.Action("ChiTietDonHang", "DonHang", new { id = item.MADH })">
+                    <img style="margin-left:25px" src="~/img/info_25px.png" />
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Xóa", "XoaDonHang", new { id = item.MADH })
+                </td>*@
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebsiteThuCungBento.Models.DONDATHANG>
+
+
+@{
+    ViewBag.Title = "Đơn đặt hàng -  KITCHEN OF MEN";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="padding-top:10px">ĐƠN ĐẶT HÀNG</h2>
+@*Scrip thực hiện Update lại Tình Trạng Giao Hàng*@
+<script type="text/javascript">
+    $(function () {
+        //Thực hiện Cập nhật khi Click <a href="#" class="DaGiaoClick">
+        $(".DaGiaoClick").click(function () {
+            //Lấy Mã ĐH từ liên kết Click <a href> trên
+            var _MADH = $(this).attr("data-id");
+
+            // Thực hiện xử lý Ajax: gọi hàm UpdateOrder để xử lý
+            $.post("/DonHang/UpdateOrder", { "id": _MADH },
+
+                function (data) {
+                    //Thực hiện cập nhật lại Url hình ẩn hiện
+                    $('#img_AnHien-' + _MADH).attr('src', data);
+                });
+        });
+    });
+</script>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Phương Thức Thanh Toán")
+        </th>
+        <th>
+            @Html.DisplayName("Tình Trạng Giao Hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày Đặt")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày Giao")
+        </th>
+        <th>
+            @Html.DisplayName("Mã Khách Hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Tên Khách Hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Tổng tiền")
+        </th>
+        <th>
+            @Html.DisplayName("Chi tiết đơn hàng")
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*Html.DisplayFor(modelItem => item.DATHANHTOAN)*@
+                @if (item.DATHANHTOAN == true)
+                {
+                    <label>Ship COD thanh toán khi nhận hàng</label>
+                }
+                else
+                {
+                    <label>Chuyển khoản</label>
+                }
+            </td>
+            <td style="text-align: center">
+                @if (item.TINHTRANGDH == true)
+                {
+                    <a href="#" class="DaGiaoClick" data-id="@item.MADH">
+                        <img src="/Content/Admin/Images/icon_Hien.png" id="img_AnHien-@item.MADH" title="Đã giao" />
+                    </a>
+                }
+                else
+                {
+                    <a href="#" class="DaGiaoClick" data-id="@item.MADH">
+                        <img src="/Content/Admin/Images/icon_An.png" id="img_AnHien-@item.MADH" title="Chưa giao" />
+                    </a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYDAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYGIAO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MAKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KHACHHANG.HOTENKH)
+            </td>
+            <td >
+                <span style="font-weight: 700; color: #F60; font-size: 14px">@string.Format("{0:#,##0}", item.TONGTIEN)<sup> VNĐ</sup></span>
+            </td>
+            <td>
+                <a href="@Url.Action("ChiTietDonHang", "DonHang", new { id = item.MADH })">
+                    <img style="margin-left:25px" src="~/img/info_25px.png" />
+            </td>
+
+            @*<td>
+                @Html.ActionLink("Xóa", "XoaDonHang", new { id = item.MADH })
+            </td>*@
+        </tr>
+    }
+
+</table>
